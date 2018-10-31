@@ -37,6 +37,37 @@ namespace Contoso.Service
         }
     }
 
+    public class DepartmentTestService : IDepartmentService
+    {
+        private readonly IDepartmentRepository departmentRepository;
+        public DepartmentTestService()
+        {
+            departmentRepository = new DepartmentRepository(new ContosoDbContext());
+        }
+
+        public IEnumerable<Department> GetAllDepartments()
+        {
+            return departmentRepository.GetAll();
+        }
+
+        public Department GetDepartmentById(int Id)
+        {
+            return departmentRepository.GetById(Id);
+        }
+
+        public void CreateDepartment(Department department)
+        {
+            departmentRepository.Add(department);
+            departmentRepository.SaveChanges();
+
+        }
+        public void UpdateDepartment(Department department)
+        {
+            departmentRepository.Update(department);
+            departmentRepository.SaveChanges();
+        }
+    }
+
     public interface IDepartmentService
     {
         IEnumerable<Department> GetAllDepartments();

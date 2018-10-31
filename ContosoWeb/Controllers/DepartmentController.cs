@@ -18,7 +18,11 @@ namespace ContosoWeb.Controllers
         private readonly IDepartmentService departmentService;
         public DepartmentController()
         {
-            departmentService = new DepartmentService();
+        //    departmentService = new DepartmentService();
+        }
+        public DepartmentController(IDepartmentService _departmentService)
+        {
+            departmentService = _departmentService;
         }
         public ActionResult Index()
         {
